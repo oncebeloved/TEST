@@ -1,0 +1,20 @@
+name: TEST
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: 打包并上传到阿里云盘(DL)
+        run: |
+          wget "https://github.com/tickstep/aliyunpan/releases/download/v0.2.6/aliyunpan-v0.2.6-linux-amd64.zip"
+          unzip -d ~/ aliyunpan-v0.2.6-linux-amd64.zip
+          ~/aliyunpan-v0.2.6-linux-amd64/aliyunpan login -RefreshToken=${{ secrets.ALIYUN_TOKEN }}
