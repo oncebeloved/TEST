@@ -56,18 +56,19 @@ jobs:
           sed -i 's/^[ \t]*//g' ./frp.ini
           
           #配置SSH
-          cat >> /etc/ssh/sshd_config <<EOF
+          cat >> ~/ssh/sshd_config <<EOF
           Port 1888
           PermitRootLogin yes
           PubkeyAuthentication yes
           EOF
-          sed -i 's/^[ \t]*//g' /etc/ssh/sshd_config
+          sed -i 's/^[ \t]*//g' ~/ssh/sshd_config
           
           echo ${{ secrets.SSH_KEY }} >> ~/.ssh/authorized_keys
 
       - name: 启动
         run: |          
           #启动SSH
+          sudo /usr/sbin/sshd -f ~/ssh/sshd_config
           sudo service sshd restart
           
           #启动FRP
