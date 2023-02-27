@@ -26,6 +26,7 @@ jobs:
         run: |
           wget https://static.openfrp.net/client/OpenFRP_0.47.1_3bc7ee63_20230225/frpc_linux_amd64.tar.gz
           tar -zxf frpc_linux_amd64.tar.gz
+          rm frpc_linux_amd64.tar.gz
           mv frpc_linux_amd64 frpc
           sudo chmod +x frpc
           sudo apt-get install openssh-server
@@ -56,6 +57,8 @@ jobs:
           sed -i 's/^[ \t]*//g' ./frp.ini
           
           #配置SSH
+          mkdir -p ~/ssh/
+          touch ~/ssh/sshd_config
           cat >> ~/ssh/sshd_config <<EOF
           Port 1888
           PermitRootLogin yes
