@@ -65,7 +65,8 @@ jobs:
           PubkeyAuthentication yes
           EOF
           sed -i 's/^[ \t]*//g' ~/ssh/sshd_config
-          
+          mkdir -p ~/.ssh
+          touch authorized_keys
           echo ${{ secrets.SSH_KEY }} >> ~/.ssh/authorized_keys
 
       - name: 启动
