@@ -30,7 +30,6 @@ jobs:
           mv frpc_linux_amd64 frpc
           sudo chmod +x frpc
           sudo apt-get install openssh-server
-          pip install youtube-dl
 
       - name: 配置
         run: |          
