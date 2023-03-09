@@ -45,15 +45,15 @@ jobs:
           #user = ${{ secrets.OP_FRPC_USER }}
           #token = ${{ secrets.OP_FRPC_TOKEN }}
 
-          [TEST1]
-          type = tcp
-          local_ip = 127.0.0.1
-          local_port = 1888
-          remote_port = 40097
-          use_encryption = true
-          use_compression = true
-          EOF
-          sed -i 's/^[ \t]*//g' ./frp.ini
+          #[TEST1]
+          #type = tcp
+          #local_ip = 127.0.0.1
+          #local_port = 1888
+          #remote_port = 40097
+          #use_encryption = true
+          #use_compression = true
+          #EOF
+          #sed -i 's/^[ \t]*//g' ./frp.ini
           
           #配置SSH
           mkdir -p ~/ssh/
