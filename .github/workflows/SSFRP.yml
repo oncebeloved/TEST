@@ -35,15 +35,15 @@ jobs:
         run: |          
           #配置FRP
           
-          touch frp.ini
-          cat >> frp.ini <<EOF
-          [common]
-          server_addr = ${{ secrets.OP_FRPC_SERVER }}
-          server_port = 8120
-          protocol = tcp
-          tls_enable = true
-          user = ${{ secrets.OP_FRPC_USER }}
-          token = ${{ secrets.OP_FRPC_TOKEN }}
+          #touch frp.ini
+          #cat >> frp.ini <<EOF
+          #[common]
+          #server_addr = ${{ secrets.OP_FRPC_SERVER }}
+          #server_port = 8120
+          #protocol = tcp
+          #tls_enable = true
+          #user = ${{ secrets.OP_FRPC_USER }}
+          #token = ${{ secrets.OP_FRPC_TOKEN }}
 
           [TEST1]
           type = tcp
@@ -75,4 +75,4 @@ jobs:
           sudo service sshd restart
           
           #启动FRP
-          ./frpc -c frp.ini
+          ./frpc -u ${{ secrets.OP_FRPC_TOKEN }} -p ${{ secrets.OP_FRPC_ID }}
